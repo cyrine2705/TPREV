@@ -2,6 +2,7 @@ export class Employe {
     constructor(
         public id:number,
         public nom:string,
+        public photo:string,
         public dateNaissance: Date,
         public adresse:{
             rue:string;
