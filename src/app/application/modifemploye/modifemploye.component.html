@@ -1,35 +1,40 @@
 <h4>Modification des informations de l'employé</h4>
-<form>
-    <label>Nom:</label>
-    <input type="text" class="form-control" >
+<form [formGroup]="EmpForm" >
+    <label>Nom:    </label>
+    <input type="text" class="form-control" formControlName="nom" [(ngModel)]="employe.nom">
     <label>Photo:</label>
-    <input type="text" class="form-control" >
+    <input type="text" class="form-control" formControlName="photo" [(ngModel)]="employe.photo"  >
     <label>Date de naissance:</label>
-    <input type="date" class="form-control" >
-    <label>Adresse:</label>
-    <div>
+    <input type="date" class="form-control" formControlName="date" [(ngModel)]="employe.dateNaissance" >
+    <label >Adresse:</label>
+    <div formGroupName="adresse">
         <label>Rue:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control"  formControlName="rue" [(ngModel)]="employe.adresse.rue">
         <label>Ville:</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" formControlName="ville" [(ngModel)]="employe.adresse.ville">
         <label>Code postal:</label>
-        <input type="number" class="form-control" >
+        <input type="number" class="form-control" formControlName="codePostal" [(ngModel)]="employe.adresse.codePostal">
     </div>
     <div>
         <label> Liste des diplômes </label>
 
     </div>
     <label> Département</label>
+    <select>
+        <ng-container *ngFor="let d of Dep ">
+            <option value="d.nomDep"  >{{d.nomDep}}</option>
+        </ng-container>
+      </select>
+      <div>
 
     <div>
         <label> Poste</label>
-        <input type="radio" name="poste" value="Ingénieur" > Ingénieur
-        <input type="radio" name="poste" value="Comptable" > Comptable
-        <input type="radio" name="poste" value="Administratif" > Administratif
+        <input type="radio" name="poste" value="Ingénieur"  formControlName="poste" [(ngModel)]="employe.poste"> Ingénieur
+        <input type="radio" name="poste" value="Comptable" formControlName="poste" [(ngModel)]="employe.poste"> Comptable
+        <input type="radio" name="poste" value="Administratif" formControlName="poste" [(ngModel)]="employe.poste"> Administratif
     </div>
     <div>
-        <input type="button" value=" Confirmer" class="btn btn-dark">
+        <input type="button" value=" Confirmer" class="btn btn-dark" (click)="onModifier(employe.id)"> 
 
     </div>
-</form>
 

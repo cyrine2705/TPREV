@@ -1,43 +1,62 @@
 <div class="container">
     <h2> Ajout d'un employé</h2>
-<form>
+<form [formGroup]="EmpForm" (ngSubmit)="onAjouter()" >
     <label>Nom:</label>
-    <input type="text" class="form-control">
-    <label>Photo:</label>
-    <input type="text" class="form-control">
-    <label>Date de naissance:</label>
-    <input type="date" class="form-control" >
-    <label>Adresse:</label>
+    <input type="text" class="form-control" formControlName="nom">
     <div>
-        <label>Rue:</label>
-        <input type="text" class="form-control">
-        <label>Ville:</label>
-        <input type="text" class="form-control" >
-        <label>Code postal:</label>
-        <input type="number" class="form-control">
-    </div>
-    <div>
-        Liste des diplômes
-        <div >
+    <div *ngIf="isValidPatternNom()" class="alert alert-danger">
+        Le nom doit comporter au moins 2 mots séparés par un espace ou virgule
+        </div>
+        <div [hidden]="isRequiredNom()" class="alert alert-danger">
+            Le nom est un champ obligatoire
 
+            </div>
+</div>
+    <label>Photo:</label>
+    <input type="text" class="form-control" formControlName="photo">
+    <div>
+    <div [hidden]="isRequiredP()" class="alert alert-danger">
+        La photo est un champ obligatoire
 
         </div>
+</div>
+    <label>Date de naissance:</label>
+    <input type="date" class="form-control" formControlName="dateNaissance" >
+    <label>Adresse:</label>
+    <div formGroupName="adresse">
+        <label>Rue:</label>
+        <input type="text" class="form-control" formControlName="rue">
+        <label>Ville:</label>
+        <input type="text" class="form-control" formControlName="ville">
+        <label>Code postal:</label>
+        <input type="number" class="form-control" formControlName="codePostal">
+    </div>
+    <div>
+        Liste des diplômes <input type="button"value="ajouter" (click)="onAjouterDip()"/>
+        <div formArrayName="diplomes">
+            <div *ngFor="let p of diplomes.controls; index as i">
+            <label> diplome </label>
+            <input type="text" class="form-control" [formControlName]="i">
+           
+            </div>
     </div>
     <label> Département</label>
     <select>
-      
+      <ng-container *ngFor="let d of Dep">
+          <option value="d.nomDep">{{d.nomDep}}</option>
+      </ng-container>
     </select>
     <div>
         <label> Poste</label>
-        <input type="radio" name="poste" value="Ingénieur" > Ingénieur
-        <input type="radio" name="poste" value="Comptable" > Comptable
-        <input type="radio" name="poste" value="Administratif" > Administratif
+        <input type="radio" name="poste" value="Ingénieur"  formControlName="poste"   > Ingénieur
+        <input type="radio" name="poste" value="Comptable" formControlName="poste"> Comptable
+        <input type="radio" name="poste" value="Administratif" formControlName="poste" > Administratif
     </div>
     <div>
-        <input type="button" value=" Ajouter" class="btn btn-warning">
+        <input type="button" value=" Ajouter" class="btn btn-warning" [disabled]="EmpForm.invalid">
 
     </div>
-</form>
+
 
 
 </div>

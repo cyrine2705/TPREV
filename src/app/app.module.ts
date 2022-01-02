@@ -11,7 +11,8 @@ import { ListemployesComponent } from './application/listemployes/listemployes.c
 import { MenuComponent } from './application/menu/menu.component';
 import { AjoutemployeComponent } from './application/ajoutemploye/ajoutemploye.component';
 import { ModifemployeComponent } from './application/modifemploye/modifemploye.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,10 @@ import { ModifemployeComponent } from './application/modifemploye/modifemploye.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

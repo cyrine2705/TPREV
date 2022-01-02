@@ -1,1 +1,29 @@
-<p>selectedemploye works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col">
+
+<div class="card " >
+<ul class="list-group list-group-flush">
+    <li class="list-group-item"><img [src]="employe.photo"/> {{employe.nom}}</li>
+    <li class="list-group-item"><strong>date de naissance :</strong>{{employe.dateNaissance}}</li>
+    <li class="list-group-item"><strong>adresse :</strong>{{employe.adresse.rue}} {{employe.adresse.ville}} {{employe.adresse.codePostal}}</li>
+    <li class="list-group-item"><strong>liste des diplomes:</strong>{{employe.diplomes}}</li>
+    <li class="list-group-item"><strong>poste:</strong>{{employe.poste}}</li>
+    <li class="list-group-item"><strong>departement:</strong></li>
+    <li class="list-group-item">
+
+
+<button (click)="afficher()" class="btn btn-warning">  Modifier </button>
+<button class="btn btn-secondary"><a [routerLink]="['/lesemployes']" > retour  </a></button>
+</li>
+</ul>
+</div>
+</div>
+<div class="col">
+<div *ngIf="txt">
+    <ng-container>
+<app-modifemploye></app-modifemploye>
+</ng-container>
+</div>
+</div>
+

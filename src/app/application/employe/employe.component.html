@@ -1,1 +1,7 @@
-<p>employe works!</p>
+<ul> 
+    
+        <h6>employe num {{emp.id}}</h6>
+        <li><img [src]="emp.photo"/> Nom {{emp.nom}} <button class="btn btn-success"><a [routerLink]="['/lesemployes', emp.id]"  >details </a></button>
+            <button class="btn btn-secondary"(click)="onSupprimer(emp.id)">supprimer</button></li>
+ 
+</ul>
